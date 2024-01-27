@@ -1,11 +1,10 @@
 const express = require("express");
 const {
-    createImportNote,
-    updateImportNote,
-    deleteImportNote,
-    getImportNote,
-    getallImportNote,
-
+  createImportNote,
+  updateImportNote,
+  deleteImportNote,
+  getImportNote,
+  getallImportNote,
 } = require("../controller/importNoteCtrl");
 const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
 const router = express.Router();

@@ -34,7 +34,7 @@ const MainLayout = () => {
   const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("user"));
   return (
-    <Layout /*onContextMenu={(e) => e.preventDefault()}*/>
+    <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo">
           <h2 className="text-white text-center mb-0">

@@ -1,10 +1,10 @@
 const express = require("express");
-const {
-  uploadImages,
-  deleteImages,
-} = require("../controller/uploadCtrl");
+const { uploadImages, deleteImages } = require("../controller/uploadCtrl");
 const { isAdmin, authMiddleware } = require("../middlewares/authMiddleware");
-const { uploadPhoto, productImgResize } = require("../middlewares/uploadImages");
+const {
+  uploadPhoto,
+  productImgResize,
+} = require("../middlewares/uploadImages");
 const router = express.Router();
 
 router.post(
@@ -14,7 +14,7 @@ router.post(
   uploadPhoto.array("images", 10),
   productImgResize,
   uploadImages
-)
+);
 
 router.delete("/delete-img/:id", authMiddleware, isAdmin, deleteImages);
 

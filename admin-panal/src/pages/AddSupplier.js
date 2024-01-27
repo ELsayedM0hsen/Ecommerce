@@ -15,9 +15,8 @@ import {
 let schema = Yup.object().shape({
   name: Yup.string().required("Supplier name cannot be empty"),
   email: Yup.string().email("Invalid email").required("Email cannot be blank"),
-  mobile: Yup.string()
-    .required("Phone number cannot be blank")
-    .matches(/^(84|0[3|5|7|8|9])+([0-9]{8,9})$/, "invalid phone number"),
+  mobile: Yup.string().required("Phone number cannot be blank"),
+  // .matches(/^(84|0[3|5|7|8|9])+([0-9]{8,9})$/, "invalid phone number"),
   address: Yup.string().required("Address cannot be left blank"),
 });
 
@@ -38,6 +37,7 @@ const Addsupplier = () => {
     supplierAddress,
     updatedSupplier,
   } = newSupplier;
+  
   useEffect(() => {
     if (getSupplierId !== undefined) {
       dispatch(getASupplier(getSupplierId));

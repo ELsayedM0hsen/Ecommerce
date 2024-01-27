@@ -13,7 +13,7 @@ import {
 } from "../features/bcategory/bcategorySlice";
 
 let schema = Yup.object().shape({
-  title: Yup.string().required("Tên không được để trống"),
+  title: Yup.string().required("Title is Required"),
 });
 
 const Addblogcat = () => {

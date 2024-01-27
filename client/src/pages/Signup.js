@@ -18,7 +18,7 @@ let signUpSchema = Yup.object().shape({
   email: Yup.string()
     .email("Email should be valid")
     .required("Email is Required"),
-  mobile: Yup.string().required("Email is Required"),
+  mobile: Yup.string().required("Mobile is Required"),
   // .matches(
   //   /^(84|0[3|5|7|8|9])+([0-9]{8,9})$/,
   //   "Invalid Phone number character"
@@ -31,11 +31,12 @@ let signUpSchema = Yup.object().shape({
 });
 
 const Signup = () => {
-  const authState = useSelector((state) => state?.auth);
+  const [isShowPassword, setIsShowPassword] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [isShowPassword, setIsShowPassword] = useState(false);
+  
+  const authState = useSelector((state) => state?.auth);
 
   const formik = useFormik({
     initialValues: {
@@ -141,7 +142,7 @@ const Signup = () => {
                       Create
                     </button>
                     <Link to="/login" className="button signup" type="submit">
-                      Log in
+                      Log In
                     </Link>
                   </div>
                 </div>

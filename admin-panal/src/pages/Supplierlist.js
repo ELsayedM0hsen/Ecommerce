@@ -188,7 +188,7 @@ const Supplierlist = () => {
             <BiEdit />
           </Link>
           <button
-            className='fs-4 text-danger bg-transparent border-0'
+            className='fs-4 text-dark bg-transparent border-0'
             onClick={() => showModal(supplierState[i]._id)}
           >
             <AiFillDelete />

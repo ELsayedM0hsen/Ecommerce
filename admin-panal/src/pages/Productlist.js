@@ -274,11 +274,6 @@ const Productlist = () => {
         const currentDate = new Date();
         const startDate = new Date(couponState[j].start);
         const endDate = new Date(couponState[j].expiry);
-
-        console.log(productState[i].title, ": currentDate: ", currentDate);
-        console.log(productState[i].title, ": startDate  : ", startDate);
-        console.log(productState[i].title, ": endDate    : ", endDate);
-
         if (currentDate >= startDate && currentDate <= endDate) {
           discountPercent = couponState[j].discount;
           price *= (100 - discountPercent) / 100;

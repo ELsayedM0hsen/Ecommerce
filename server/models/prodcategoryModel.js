@@ -1,24 +1,23 @@
-const mongoose = require('mongoose'); // Erase if already required
+const mongoose = require("mongoose");
 
-// Declare the Schema of the Mongo model
-var prodcategorySchema = new mongoose.Schema({
+var prodcategorySchema = new mongoose.Schema(
+  {
     title: {
-        type: String,
-        required: true,
-        unique: true,
-        index: true,
+      type: String,
+      required: true,
+      unique: true,
+      index: true,
     },
     images: [
-        {
-            public_id: String,
-            url: String,
-        },
+      {
+        public_id: String,
+        url: String,
+      },
     ],
-},
-    {
-        timestamps: true,
-    }
+  },
+  {
+    timestamps: true,
+  }
 );
 
-//Export the model
-module.exports = mongoose.model('PCategory', prodcategorySchema);
+module.exports = mongoose.model("PCategory", prodcategorySchema);

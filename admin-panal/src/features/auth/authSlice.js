@@ -1,31 +1,15 @@
-// Defined Actions, Reducer and Save State
-
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import authService from "./authServices";
 import { toast } from "react-toastify";
 
-const getUserfromLocalStorage = localStorage.getItem("user")
-  ? JSON.parse(localStorage.getItem("user"))
-  : null;
 
-export const resetState = createAction("Reset_all");
-
-const initialState = {
-  user: getUserfromLocalStorage, // user
-  orders: [], // orders
-  isError: false,
-  isLoading: false,
-  isSuccess: false,
-  message: "",
-};
 
 // create a actions Redux
-// function login nhan vao bien userData, bien thunkAPI la đối tượng cung cấp các phương thức để xử lý các trạng thái yêu cầu
 export const login = createAsyncThunk(
   "auth/login",
-  async (userData, thunkAPI) => {
+  async (user, thunkAPI) => {
     try {
-      return await authService.login(userData);
+      return await authService.login(user);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -174,19 +158,31 @@ export const unBlockUser = createAsyncThunk(
   }
 );
 
-export const refreshToken = createAsyncThunk(
-  "auth/refreshToken",
-  async (refreshToken, thunkAPI) => {
-    try {
-      return await authService.refreshToken(refreshToken);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
+// export const refreshToken = createAsyncThunk(
+//   "auth/refreshToken",
+//   async (refreshToken, thunkAPI) => {
+//     try {
+//       return await authService.refreshToken(refreshToken);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
+const getUserfromLocalStorage = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user"))
+  : null;
 
-// create a Reducer Redux
-// 1 actions co 3 reducers
+export const resetState = createAction("Reset_all");
+
+const initialState = {
+  user: getUserfromLocalStorage, 
+  orders: [], 
+  isError: false,
+  isLoading: false,
+  isSuccess: false,
+  message: "",
+};
+
 export const authSlice = createSlice({
   name: "auth", // name State
   initialState: initialState,
@@ -373,7 +369,7 @@ export const authSlice = createSlice({
         state.updatedOrder = action.payload;
         state.message = "success";
         if (state.isSuccess === true) {
-          toast.success("Cập nhật thành công trạng thái đơn hàng")
+          toast.success("Successfully updated order status")
         }
       })
       .addCase(updateAOrder.rejected, (state, action) => {
@@ -408,7 +404,7 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.blockedUser = action?.payload?.message;
         if (state.isSuccess === true) {
-          toast.success("Khách hàng đã bị Khóa")
+          toast.success("Customer has been Locked")
         }
       })
       .addCase(blockUser.rejected, (state, action) => {
@@ -427,7 +423,7 @@ export const authSlice = createSlice({
         state.isSuccess = true;
         state.unBlockedUser = action?.payload?.message;
         if (state.isSuccess === true) {
-          toast.success("Khách hàng đã Hoạt động")
+          toast.success("Active Customers")
         }
       })
       .addCase(unBlockUser.rejected, (state, action) => {
@@ -437,22 +433,22 @@ export const authSlice = createSlice({
         state.message = action.error;
       })
 
-      .addCase(refreshToken.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(refreshToken.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.isSuccess = true;
-        state.refreshToken = action.payload.accessToken;
-      })
-      .addCase(refreshToken.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.isSuccess = false;
-        state.message = action.error;
-        console.log(action.error);
-      })
+      // .addCase(refreshToken.pending, (state) => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(refreshToken.fulfilled, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isError = false;
+      //   state.isSuccess = true;
+      //   state.refreshToken = action.payload.accessToken;
+      // })
+      // .addCase(refreshToken.rejected, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isError = true;
+      //   state.isSuccess = false;
+      //   state.message = action.error;
+      //   console.log(action.error);
+      // })
 
       .addCase(resetState, () => initialState);
   },

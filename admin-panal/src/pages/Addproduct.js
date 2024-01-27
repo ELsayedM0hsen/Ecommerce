@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import CustomInput from "../components/CustomInput";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBrands } from "../features/brand/brandSlice";
 import { getCategories } from "../features/pcategory/pcategorySlice";
 import { getColors } from "../features/color/colorSlice";
-import { Select } from "antd";
 import Dropzone from "react-dropzone";
 import {
   delImg,
@@ -66,11 +65,11 @@ const Addproduct = () => {
     dispatch(getSuppliers());
   }, []);
 
-  const brandState = useSelector((state) => state.brand.brands);
-  const catState = useSelector((state) => state.pCategory.pCategories);
-  const colorState = useSelector((state) => state.color.colors);
-  const supplierState = useSelector((state) => state.supplier.suppliers);
-  const newProduct = useSelector((state) => state.product);
+  const brandState = useSelector((state) => state?.brand?.brands);
+  const catState = useSelector((state) => state?.pCategory?.pCategories);
+  const colorState = useSelector((state) => state?.color?.colors);
+  const supplierState = useSelector((state) => state?.supplier?.suppliers);
+  const newProduct = useSelector((state) => state?.product);
   const {
     isSuccess,
     isError,

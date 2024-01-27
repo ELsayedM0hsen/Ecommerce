@@ -4,7 +4,6 @@ import productReducer from "../features/products/productSlice";
 import blogReducer from "../features/blogs/blogSlice";
 import contactReducer from "../features/contact/contactSlice";
 import couponReducer from "../features/coupon/couponSlice";
-import paymentReducer from "../features/payment/paymentSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +12,5 @@ export const store = configureStore({
     blog: blogReducer,
     contact: contactReducer,
     coupon: couponReducer,
-    payment: paymentReducer,
   },
 });

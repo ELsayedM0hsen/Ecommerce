@@ -14,13 +14,9 @@ var cartSchema = new mongoose.Schema(
       type: Number,
       require: true,
     },
-    // color: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Color",
-    // },
     color: {
-        type: String,
-        require: true
+      type: String,
+      require: true,
     },
     price: {
       type: Number,

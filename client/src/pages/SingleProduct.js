@@ -166,9 +166,6 @@ const SingleProduct = () => {
 
 
   const uploadCart = () => {
-    // if (color === null) {
-    //   toast.error("Please select color");
-    //   return false;
     if (!authState?._id) {
       navigate("/login", { state: location.pathname }); 
     } else {
@@ -348,15 +345,12 @@ const SingleProduct = () => {
                 </div>
               </div>
               <div className="pt-2">
-                {/* <div className='d-flex gap-10 flex-column mt-2 mb-3'>
+                <div className='d-flex gap-10 flex-column mt-2 mb-3'>
                   <h3 className='product-heading'>Size :</h3>
                   <div className='d-flex flex-wrap gap-15'>
-                    <span className='badge border border-1 bg-white text-dark text-secondary'>S</span>
-                    <span className='badge border border-1 bg-white text-dark text-secondary'>M</span>
-                    <span className='badge border border-1 bg-white text-dark text-secondary'>L</span>
-                    <span className='badge border border-1 bg-white text-dark text-secondary'>XL</span>
+                    <span className='badge border border-1 bg-white text-dark text-secondary'>{productState?.size}</span>
                   </div>
-                </div> */}
+                </div>
                 <div className="d-flex gap-30 flex-row mt-2 mb-3">
                   {alreadyAdded === false && (
                     <>
@@ -389,7 +383,7 @@ const SingleProduct = () => {
                           type="number"
                           name=""
                           min={1}
-                          max={100}
+                          max={productState?.quantity}
                           className="form-control hide-spinner"
                           style={{
                             width: "53px",
@@ -616,7 +610,7 @@ const SingleProduct = () => {
                     return (
                       <div key={index} className="review">
                         <div className="d-flex gap-10 align-items-center">
-                          <h6 className="mb-0">{`${item?.postedby?.lastName} ${item?.postedby?.firstName}`}</h6>
+                          <h6 className="mb-0">{`${item?.postedby?.firstName} ${item?.postedby?.lastName} `}</h6>
                           <ReactStars
                             key={starKey}
                             count={5}

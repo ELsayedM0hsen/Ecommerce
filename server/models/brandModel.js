@@ -1,4 +1,4 @@
-const mongoose = require("mongoose"); 
+const mongoose = require("mongoose");
 
 var brandSchema = new mongoose.Schema(
   {
@@ -14,5 +14,4 @@ var brandSchema = new mongoose.Schema(
   }
 );
 
-//Export the model
 module.exports = mongoose.model("Brand", brandSchema);

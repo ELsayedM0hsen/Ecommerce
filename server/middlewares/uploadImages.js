@@ -1,4 +1,4 @@
-const multer = require("multer"); // middleware
+const multer = require("multer");
 const sharp = require("sharp"); // resize, format image
 const path = require("path");
 const fs = require("fs");

@@ -75,7 +75,7 @@ const getProductbySupplier = asyncHandler(async (req, res, next) => {
 const getAllProduct = asyncHandler(async (req, res, next) => {
   try {
     // Filtering
-    //ex: path?price[gte]=12501&price[lte]=42000
+    //ex: path?price[gte]=125&price[lte]=420
 
     const queryObj = { ...req.query };
     const excludeFields = ["page", "sort", "limit", "fields"];

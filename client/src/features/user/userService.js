@@ -1,6 +1,7 @@
 import axios from "axios";
 import { base_url, config } from "../../utils/axiosconfig";
 
+
 const register = async (userData) => {
   const response = await axios.post(`${base_url}user/register`, userData);
 
@@ -23,6 +24,33 @@ const changePassword = async (userData) => {
   );
 
   return response.data;
+};
+// send email want reset password
+const forgotPassToken = async (data) => {
+  const response = await axios.post(
+    `${base_url}user/forgot-password-token`,
+    data
+  );
+  if (response.data) {
+    return response.data;
+  }
+};
+
+// send new password
+const resetPass = async (data) => {
+  const response = await axios.put(
+    `${base_url}user/reset-password/${data.token}`,
+    { password: data?.password }
+  );
+  if (response.data) {
+    return response.data;
+  }
+};
+const updateUser = async (data) => {
+  const response = await axios.put(`${base_url}user/edit-user`, data, config);
+  if (response.data) {
+    return response.data;
+  }
 };
 
 const getUserWishlist = async (data) => {
@@ -74,7 +102,6 @@ const updateProductFromCart = async (cartDetail) => {
 };
 
 const createOrder = async (orderDetail) => {
-  console.log("orderDetail", orderDetail);
   const response = await axios.post(
     `${base_url}user/cart/create-order`,
     orderDetail,
@@ -86,9 +113,6 @@ const createOrder = async (orderDetail) => {
 };
 
 const cancelOrder = async (data) => {
-  // console.log("config", config);
-  // console.log("config.headers", config.headers);
-  // console.log("config.headers.Authorization", config.headers.Authorization);
   const response = await axios.put(
     `${base_url}user/cancelOrder/${data._id}`,
     { orderItems: data.orderItems },
@@ -105,7 +129,6 @@ const updateOrder = async (data) => {
     { status: data.status },
     config
   );
-
   return response.data;
 };
 
@@ -123,43 +146,8 @@ const getAOrder = async (id) => {
   }
 };
 
-const updateUser = async (data) => {
-  const response = await axios.put(`${base_url}user/edit-user`, data, config);
-  if (response.data) {
-    return response.data;
-  }
-};
 
-// send email want reset password
-const forgotPassToken = async (data) => {
-  const response = await axios.post(
-    `${base_url}user/forgot-password-token`,
-    data
-  );
-  if (response.data) {
-    return response.data;
-  }
-};
 
-// send new password
-const resetPass = async (data) => {
-  const response = await axios.put(
-    `${base_url}user/reset-password/${data.token}`,
-    { password: data?.password }
-  );
-  if (response.data) {
-    return response.data;
-  }
-};
-
-const refreshToken = async (refreshToken) => {
-  const response = await axios.post(`${base_url}user/refresh`, {
-    refreshToken: refreshToken,
-  });
-  if (response.data) {
-    return response.data;
-  }
-};
 
 export const authService = {
   register,
@@ -179,5 +167,4 @@ export const authService = {
   forgotPassToken,
   resetPass,
   emptyCart,
-  refreshToken,
 };

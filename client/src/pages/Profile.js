@@ -20,9 +20,9 @@ let profileSchema = Yup.object().shape({
 });
 
 const Profile = () => {
-  const dispatch = useDispatch();
   const [edit, setEdit] = useState(true);
-
+  
+  const dispatch = useDispatch();
   const userState = useSelector((state) => state?.auth?.user);
 
   useEffect(() => {

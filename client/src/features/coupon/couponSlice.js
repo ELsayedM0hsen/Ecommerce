@@ -33,7 +33,6 @@ const initialState = {
   message: "",
 };
 
-// reducers
 export const couponSlice = createSlice({
   name: "coupons",
   initialState,

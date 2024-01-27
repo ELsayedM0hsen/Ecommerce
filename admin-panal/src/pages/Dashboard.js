@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Column, Bar, Pie } from "@ant-design/plots"; // chart column
-import { Table } from "antd"; // Table
+import { Column, Bar, Pie } from "@ant-design/plots"
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCategoryRevenueData,
@@ -13,30 +12,7 @@ import {
   getYearlyData,
 } from "../features/auth/authSlice";
 import { Link } from "react-router-dom";
-import PieChartComponent from "../components/PieChartComponent";
 
-const columns = [
-  {
-    title: "SNo",
-    dataIndex: "key",
-  },
-  {
-    title: "Tên",
-    dataIndex: "name",
-  },
-  {
-    title: "Số lượng",
-    dataIndex: "product",
-  },
-  {
-    title: "Tổng giá",
-    dataIndex: "price",
-  },
-  {
-    title: "Trạng thái",
-    dataIndex: "status",
-  },
-];
 
 const Dashboard = () => {
   const getTokenFromLocalStorage = localStorage.getItem("user")
@@ -79,7 +55,7 @@ const Dashboard = () => {
   const [inventoryStatsByCategory, setInventoryStatsByCategory] = useState([]);
   const [orderStatusCounts, setOrderStatusCounts] = useState([]);
   const [paymentMethodCounts, setPaymentMethodCounts] = useState([]);
-  const [orderData, setOrderData] = useState([]);
+
 
   useEffect(() => {
     dispatch(getOrders(config3));
@@ -92,41 +68,9 @@ const Dashboard = () => {
     dispatch(getInventoryStatsByCategory(config3));
   }, []);
 
-  useEffect(() => {
-    const data1 = [];
-    for (let i = 0; i < orderState?.length; i++) {
-      if (i < 10) {
-        data1.push({
-          key: i + 1,
-          name: orderState[i]?.user?.firstName + orderState[i]?.user?.lastName,
-          product: orderState[i]?.orderItems?.length,
-          price: orderState[i]?.totalPrice?.toLocaleString("en-US", {
-            style: "currency",
-            currency: "EGP",
-          }),
-          status: orderState[i]?.orderStatus,
-        });
-      }
-    }
-    setOrderData(data1);
-  }, [orderState]);
 
   useEffect(() => {
-    // let monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    let monthNames = [
-      "T1",
-      "T2",
-      "T3",
-      "T4",
-      "T5",
-      "T6",
-      "T7",
-      "T8",
-      "T9",
-      "T10",
-      "T11",
-      "T12",
-    ];
+    let monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let data = [];
     let monthlyOrderCount = [];
     for (let index = 0; index < monthlyDataState?.length; index++) {
@@ -188,7 +132,6 @@ const Dashboard = () => {
     data: dataMonthly,
     xField: "type",
     yField: "income",
-    // seriesField: '',
     color: ({ type }) => {
       return "#0ee65f";
     },
@@ -228,7 +171,6 @@ const Dashboard = () => {
     data: dataMonthlySales,
     xField: "type",
     yField: "sales",
-    // seriesField: '',
     color: ({ type }) => {
       return "#5a91ff";
     },
@@ -474,13 +416,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
-      {/* <div className='mt-4'>
-        <h3 className='mb-5 title'>Đơn hàng gần đây</h3>
-        <div>
-          <Table columns={columns} dataSource={orderData} />
-        </div>
-      </div> */}
     </div>
   );
 };

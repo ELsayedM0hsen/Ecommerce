@@ -1,9 +1,9 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'; // noi dung thay doi theo URL hien tai
-import Footer from './Footer';
-import Header from './Header';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
+import Header from "./Header";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = () => {
   return (
@@ -12,7 +12,7 @@ const Layout = () => {
       <Outlet />
       <Footer />
       <ToastContainer
-        position="top-right"
+        position="buttom-right"
         autoClose={900}
         hideProgressBar={false}
         newestOnTop={false}
@@ -24,8 +24,7 @@ const Layout = () => {
         theme="light"
       />
     </>
+  );
+};
 
-  )
-}
-
-export default Layout
+export default Layout;

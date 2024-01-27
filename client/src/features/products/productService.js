@@ -2,9 +2,6 @@ import axios from "axios";
 import { base_url, config } from '../../utils/axiosconfig';
 
 const getProducts = async (data) => {
-  console.log("data filter: ", data);
-  console.log(`product?${data?.brand ? `brand=${data?.brand}&&` : ""}${data?.tag ? `tags=${data?.tag}&&` : ""}${data?.category ? `category=${data?.category}&&` : ""}${data?.minPrice ? `price[gte]=${data?.minPrice}&&` : ""}${data?.maxPrice ? `price[lte]=${data?.maxPrice}&&` : ""}${data?.sort ? `sort=${data?.sort}&&` : ""}${data?.page ? `page=${data?.page}&&` : ""}${data?.limit ? `limit=${data?.limit}&&` : ""}`);
-
   const response = await axios.get(`${base_url}product?${data?.brand ? `brand=${data?.brand}&&` : ""}${data?.tag ? `tags=${data?.tag}&&` : ""}${data?.category ? `category=${data?.category}&&` : ""}${data?.minPrice ? `price[gte]=${data?.minPrice}&&` : ""}${data?.maxPrice ? `price[lte]=${data?.maxPrice}&&` : ""}${data?.sort ? `sort=${data?.sort}&&` : ""}${data?.page ? `page=${data?.page}&&` : ""}${data?.limit ? `limit=${data?.limit}&&` : ""}`);
   if (response.data) {
     return response.data;
@@ -34,7 +31,6 @@ const rateProduct = async (data) => {
 
 const getProductCategories = async () => {
   const response = await axios.get(`${base_url}category/`);
-  // console.log(response);
   return response.data;
 };
 

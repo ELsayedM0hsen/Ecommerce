@@ -22,7 +22,7 @@ const SpecialProduct = (props) => {
               activeColor="#ffd700"
             />
             <p className="price">
-              <span className="red-p">EGP {price}</span>
+              <span className="red-p">{price} EGP</span>
             </p>
             <div className="prod-count my-3">
               <p>Products: {quantity}</p>

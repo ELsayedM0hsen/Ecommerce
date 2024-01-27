@@ -195,9 +195,9 @@ const Orders = () => {
       data1.push({
         key: i + 1,
         name:
-          orderState[i]?.shippingInfo?.lastName +
+        orderState[i]?.shippingInfo?.firstName+
           " " +
-          orderState[i]?.shippingInfo?.firstName,
+         orderState[i]?.shippingInfo?.lastName ,
         product: (
           <Link
             to={`/admin/order/${orderState[i]?._id}`}
@@ -235,9 +235,9 @@ const Orders = () => {
       data1.push({
         key: i + 1,
         name:
-          orderState[i]?.shippingInfo?.lastName +
+        orderState[i]?.shippingInfo?.firstName+
           " " +
-          orderState[i]?.shippingInfo?.firstName,
+         orderState[i]?.shippingInfo?.lastName ,
         product: (
           <Link
             to={`/admin/order/${orderState[i]?._id}`}
@@ -365,10 +365,10 @@ const Orders = () => {
         </div>
         <table style=" border-collapse: collapse; width: 100%;">
             <tr>
-                <th style="border: 1px solid #ccc; padding: 8px; text-align: center;">Sản phẩm</th>
-                <th style="border: 1px solid #ccc; padding: 8px; text-align: center;">Giá</th>
-                <th style="border: 1px solid #ccc; padding: 8px; text-align: center;">Số lượng</th>
-                <th style="border: 1px solid #ccc; padding: 8px; text-align: center;">Thành tiền</th>
+                <th style="border: 1px solid #ccc; padding: 8px; text-align: center;">Product</th>
+                <th style="border: 1px solid #ccc; padding: 8px; text-align: center;">Price</th>
+                <th style="border: 1px solid #ccc; padding: 8px; text-align: center;">Quantity</th>
+                <th style="border: 1px solid #ccc; padding: 8px; text-align: center;">into money</th>
             </tr>
             ${orderItemsHtmlString}
         </table>

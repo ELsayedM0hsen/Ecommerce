@@ -41,7 +41,7 @@ const Blogcatlist = () => {
     dispatch(getCategories());
   }, [])
 
-  const bCatState = useSelector((state) => state.bCategory.bCategories);
+  const bCatState = useSelector((state) => state?.bCategory?.bCategories);
   const data1 = [];
   for (let i = 0; i < bCatState.length; i++) {
     data1.push({

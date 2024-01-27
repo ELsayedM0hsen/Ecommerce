@@ -41,7 +41,6 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
-    console.log("productUpdateDetail?.quantity", productUpdateDetail?.quantity);
     if (productUpdateDetail !== null) {
       dispatch(
         updateCartProduct({
@@ -88,16 +87,16 @@ const Cart = () => {
 
   const itemsDelivery = [
     {
-      title: "20.000 EGP",
-      description: "2.000.000EGP",
+      title: "600 EGP",
+      description: "600 EGP",
     },
     {
-      title: "10.000 EGP",
-      description: "5.000.000EGP",
+      title: "1000 EGP",
+      description: "1000 EGP",
     },
     {
       title: "0 EGP",
-      description: "0đ hoặc > 5.000.000EGP",
+      description: "0EGP or > 1000 EGP",
     },
   ];
 
@@ -153,7 +152,7 @@ const Cart = () => {
                       </div>
                       <div className="w-75">
                         <p>{item?.productId?.title.substr(0, 50)}</p>
-                        {/* <p>Size: L</p> */}
+                         <p>Size: {item?.productId?.size}</p> 
                         <p className="cart-data-color d-flex gap-3">
                           Color:
                           <ul className="colors ps-0">
@@ -236,7 +235,7 @@ const Cart = () => {
                           type="number"
                           name={"quantity" + item?._id}
                           min={1}
-                          max={100}
+                          max={item?.productId?.quantity}
                           className="form-control hide-spinner"
                           style={{
                             width: "53px",
@@ -328,172 +327,6 @@ const Cart = () => {
                         </div>
                       )}
                     </div>
-
-                    <div className="cart-data-on-mobile d-none gap-2 mt-2">
-                      <div className="cart-col-mobile-price d-flex gap-2 align-items-center">
-                        <h5
-                          className="price mb-0"
-                          style={{
-                            color:
-                              item?.priceAfterDiscount !== item?.price
-                                ? "gray"
-                                : "red",
-                          }}
-                        >
-                          {item?.priceAfterDiscount !== item?.price ? (
-                            <del>
-                              {item?.price
-                                ? (item?.price).toLocaleString("en-US", {
-                                    style: "currency",
-                                    currency: "EGP",
-                                  })
-                                : "0 EGP"}
-                            </del>
-                          ) : item?.price ? (
-                            (item?.price).toLocaleString("en-US", {
-                              style: "currency",
-                              currency: "EGP",
-                            })
-                          ) : (
-                            "EGP"
-                          )}
-                        </h5>
-                        {item?.priceAfterDiscount !== item?.price && (
-                          <div className="d-flex gap-1">
-                            <h5 className="price mb-0" style={{ color: "red" }}>
-                              {item?.priceAfterDiscount
-                                ? (item?.priceAfterDiscount).toLocaleString(
-                                    "en-US",
-                                    {
-                                      style: "currency",
-                                      currency: "EGP",
-                                    }
-                                  )
-                                : "0 EGP"}
-                            </h5>
-                            <h6
-                              className="mb-0"
-                              style={{ color: "#434141", fontSize: "14px" }}
-                            >{`(-${discountPercent}%)`}</h6>
-                          </div>
-                        )}
-                      </div>
-                      <div className="cart-col-mobile-quantity d-flex align-items-center gap-2">
-                        <div
-                          className="d-flex align-items-center gap-1"
-                          style={{
-                            border: "1px solid #ccc",
-                            borderRadius: "10px",
-                          }}
-                        >
-                          <AiOutlineMinus
-                            style={{ width: "25px", height: "35px" }}
-                            onClick={() => {
-                              item?.quantity > 1 &&
-                                setProductUpdateDetail({
-                                  cartItemId: item?._id,
-                                  quantity: item?.quantity - 1,
-                                });
-                            }}
-                          />
-                          <input
-                            type="number"
-                            name={"quantity" + item?._id}
-                            min={1}
-                            max={100}
-                            className="form-control"
-                            style={{
-                              width: "53px",
-                              height: "35px",
-                              borderTop: "none",
-                              borderBottom: "none",
-                              background: "transparent",
-                            }}
-                            id={"cart" + item?._id}
-                            value={item?.quantity}
-                            onChange={(e) => {
-                              setProductUpdateDetail({
-                                cartItemId: item?._id,
-                                quantity: parseInt(e.target.value, 10),
-                              });
-                            }}
-                            inputMode="numeric"
-                            pattern="[0-9]*"
-                          />
-                          <AiOutlinePlus
-                            style={{ width: "25px", height: "35px" }}
-                            onClick={() => {
-                              item?.quantity < 100 &&
-                                setProductUpdateDetail({
-                                  cartItemId: item?._id,
-                                  quantity: item?.quantity + 1,
-                                });
-                            }}
-                          />
-                        </div>
-                        <div>
-                          <AiFillDelete
-                            onClick={() => {
-                              deleteACartProduct(item?._id);
-                            }}
-                            className="text-dark"
-                          />
-                        </div>
-                      </div>
-                      <div className="cart-col-mobile-totalprice d-flex gap-2 align-items-center">
-                        <h5
-                          className="price mb-0"
-                          style={{
-                            color:
-                              item?.priceAfterDiscount !== item?.price
-                                ? "gray"
-                                : "red",
-                          }}
-                        >
-                          {item?.priceAfterDiscount !== item?.price ? (
-                            <del>
-                              {item?.price * item?.quantity
-                                ? (item?.price * item?.quantity).toLocaleString(
-                                    "en-US",
-                                    {
-                                      style: "currency",
-                                      currency: "EGP",
-                                    }
-                                  )
-                                : "0 EGP"}
-                            </del>
-                          ) : item?.price * item?.quantity ? (
-                            (item?.price * item?.quantity).toLocaleString(
-                              "en-US",
-                              {
-                                style: "currency",
-                                currency: "EGP",
-                              }
-                            )
-                          ) : (
-                            "EGP"
-                          )}
-                        </h5>
-                        {item?.priceAfterDiscount !== item?.price && (
-                          <div className="d-flex gap-1">
-                            <h5 className="price mb-0" style={{ color: "red" }}>
-                              {item?.priceAfterDiscount * item?.quantity
-                                ? (
-                                    item?.priceAfterDiscount * item?.quantity
-                                  ).toLocaleString("en-US", {
-                                    style: "currency",
-                                    currency: "EGP",
-                                  })
-                                : "0 EGP"}
-                            </h5>
-                            <h6
-                              className="mb-0"
-                              style={{ color: "#434141", fontSize: "14px" }}
-                            >{`(-${discountPercent}%)`}</h6>
-                          </div>
-                        )}
-                      </div>
-                    </div>
                   </div>
                 );
               })}
@@ -527,7 +360,6 @@ const Cart = () => {
                 )}
               </div>
             </div>
-            <div></div>
           </div>
         </div>
       </Container>

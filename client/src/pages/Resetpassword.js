@@ -1,12 +1,12 @@
 import React from 'react';
 import BreadCrumb from '../components/BreadCrumb';
-import Meta from '../components/Meta'; // thay doi tieu de
+import Meta from '../components/Meta'; 
 import Container from '../components/Container';
 import CustomInput from '../components/CustomInput';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { resetPassword } from '../features/user/userSlice';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useState } from 'react';
@@ -17,7 +17,7 @@ let passwordSchema = Yup.object().shape({
     .required("Mật khẩu không được để trống")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      "Mật khẩu phải có ít nhất 8 ký tự, bao gồm ký tự hoa, ký tự thường, số và ký tự đặc biệt"
+      "* Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
     ),
 });
 
@@ -47,12 +47,12 @@ const Resetpassword = () => {
   return (
     <>
       <Meta title='Reset Password' />
-      <BreadCrumb title='Reset Mật khẩu' />
-      <Container class1='login-wrapper py-5' style={{ backgroundColor: '#7985c9' }}>
+      <BreadCrumb title='Reset Password' />
+      <Container class1='login-wrapper py-5 home-wrapper-2'>
         <div className='row'>
           <div className='col-12'>
             <div className='auth-card'>
-              <h3 className='text-center mb-3'>Reset Mật khẩu</h3>
+              <h3 className='text-center mb-3'>Reset Your Account Password</h3>
               <form
                 action=''
                 onSubmit={formik.handleSubmit}
@@ -80,16 +80,9 @@ const Resetpassword = () => {
                     }
                   </span>
                 </div>
-
-                {/* <CustomInput
-                  type='password'
-                  name='confpassword'
-                  placeholder='Confirm Password'
-
-                /> */}
                 <div>
                   <div className='mt-3 d-flex justify-content-center align-items-center gap-15'>
-                    <button className='button border-0 btn-submit' type='submit'>OK</button>
+                    <button className='button border-0 btn-submit' type='submit'>Reset</button>
                   </div>
                 </div>
               </form>

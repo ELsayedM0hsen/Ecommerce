@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
-import Meta from "../components/Meta"; // thay doi tieu de
+import Meta from "../components/Meta";
 import ProductCard from "../components/ProductCard";
 import Container from "../components/Container";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import {
   getAllProducts,
   getCategories,
 } from "../features/products/productSlice";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { AiFillFilter, AiOutlineClose } from "react-icons/ai";
 import { Pagination } from "antd";
 
@@ -98,13 +98,13 @@ const Product = () => {
   };
 
   const onChange = (current, pageSize) => {
-    setPanigate({ ...panigate, page: current, limit: pageSize }); // trang bao nhieu, limit bao nhieu sp/trang
+    setPanigate({ ...panigate, page: current, limit: pageSize }); 
   };
 
   return (
     <div>
       <Meta title="Our Store" />
-      <BreadCrumb title="Sản phẩm" />
+      <BreadCrumb title="Our Store" />
       <Container class1="store-wrapper home-wrapper-2 py-4">
         <div className="row">
           <div className="col-lg-3">
@@ -223,7 +223,7 @@ const Product = () => {
                     className="filter-title header__mobile-link mb-0"
                     style={{ borderBottom: "0" }}
                   >
-                    Danh mục
+                    Filter by Category
                   </h3>
                 </li>
                 {pCategoryState &&
@@ -304,7 +304,7 @@ const Product = () => {
                     className="filter-title header__mobile-link mb-0 mt-2"
                     style={{ borderBottom: "0" }}
                   >
-                    Thương hiệu
+                    Brands
                   </h3>
                 </li>
                 <li className="header__mobile-link">

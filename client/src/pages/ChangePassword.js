@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import { Link, useNavigate } from "react-router-dom";
@@ -29,7 +29,7 @@ const ChangePassword = () => {
   const [isShowPasswordOld, setIsShowPasswordOld] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const authState = useSelector((state) => state.auth);
+  const authState = useSelector((state) => state?.auth);
 
   useEffect(() => {
     dispatch(resetState());
@@ -58,8 +58,7 @@ const ChangePassword = () => {
       <Meta title="Change Password" />
       <BreadCrumb title="Change the password" />
       <Container
-        class1="login-wrapper py-5"
-        // style={{ backgroundColor: "#7985c9" }}
+        class1="login-wrapper py-5 home-wrapper-2"
       >
         <div className="row">
           <div className="col-12">

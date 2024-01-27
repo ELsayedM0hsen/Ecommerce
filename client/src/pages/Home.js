@@ -25,20 +25,14 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Image } from "antd";
 
-import slider1 from "../images/slider1.webp";
-import slider2 from "../images/slider2.webp";
-import slider3 from "../images/slider3.webp";
-import slider4 from "../images/slider4.webp";
+import slider1 from "../images/slider1.jpg";
+import slider2 from "../images/slider2.jpg";
+import slider3 from "../images/slider3.jpg";
+import slider4 from "../images/slider4.jpg";
 
 // special product
-import wish from "../images/wish.svg";
-import wishlist from "../images/wishlist.svg";
 import watch from "../images/watch.jpg";
-import watch2 from "../images/watch-1.avif";
 import ReactStars from "react-rating-stars-component";
-import prodcompare from "../images/prodcompare.svg";
-import addcart from "../images/add-cart.svg";
-import view from "../images/view.svg";
 import { getAllCoupons } from "../features/coupon/couponSlice";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { getUserProductWishlist } from "../features/user/userSlice";
@@ -62,18 +56,6 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const arrImagesSlider = [slider1, slider2, slider3, slider4];
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 1500,
-  };
-
-  // const authState = useSelector((state) => state?.auth);
   const blogState = useSelector((state) => state?.blog?.blogs);
   const productState = useSelector(
     (state) => state?.product?.products?.product
@@ -107,7 +89,17 @@ const Home = () => {
   const addToWishList = (id) => {
     dispatch(addToWishlist({ id, config2 }));
   };
-
+//slider images 
+  const arrImagesSlider = [slider1,slider2,slider3, slider4];
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1500,
+  };
   return (
     <>
       <Meta title="Ecommerce App" />

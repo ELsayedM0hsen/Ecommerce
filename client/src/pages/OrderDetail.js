@@ -72,13 +72,13 @@ const OrderDetail = () => {
             <StepOrderComponent items={itemsOrderStatus} current={orderStatus} />
           </div>
           <div className="col-12 d-flex mb-4 justify-content-around align-items-center info-order-detail-mobile">
-            <div style={{ border: "1px solid #857575cc", borderRadius: "10px", padding: "15px", backgroundColor: "white", marginTop: "16px" }}>
+            <div style={{ border: "1px solid #febd69", borderRadius: "10px", padding: "15px", backgroundColor: "white", marginTop: "16px" }}>
               <h5>Delivery address</h5>
               <p>{`Receiver: ${aOrderState?.shippingInfo?.lastName} ${aOrderState?.shippingInfo?.firstName}`}</p>
               <p>{`Phone number: ${aOrderState?.shippingInfo?.mobile}`}</p>
               <p className='mb-0'>{`Address: ${aOrderState?.shippingInfo?.address}`}</p>
             </div>
-            <div style={{ border: "1px solid #857575cc", borderRadius: "10px", padding: "15px", backgroundColor: "white", marginTop: "16px" }}>
+            <div style={{ border: "1px solid #febd69", borderRadius: "10px", padding: "15px", backgroundColor: "white", marginTop: "16px" }}>
             <h5>Order information</h5>
                <p>{`Order code: ${aOrderState?._id}`}</p>
                <p>{`Order Date: ${new Date(aOrderState?.createdAt).toLocaleString()}`}</p>
@@ -88,9 +88,9 @@ const OrderDetail = () => {
           </div>
 
           <div className='col-12'>
-            <div className='row' style={{ border: "1px solid #857575cc", borderRadius: "10px", padding: "15px", backgroundColor: "#e1d3d3" }}>
+            <div className='row' style={{ border: "1px solid #febd69", borderRadius: "10px", padding: "15px", backgroundColor: "white" }}>
               <div className='col-12'>
-                <div className='row text-center' style={{ borderBottom: "1px solid rgba(133, 117, 117, 0.8)" }}>
+                <div className='row text-center' style={{ borderBottom: "1px solid #febd69" }}>
                   <div className='col-md-6 d-none d-md-block p-2'>
                     <h6 className=' mb-0'>Product</h6>
                   </div>
@@ -110,7 +110,7 @@ const OrderDetail = () => {
                   return (
                     <div className='col-12' key={index}>
                       <div className='row p-3 d-flex align-items-center text-center order-wrapper-mobile'
-                        style={{ borderBottom: "1px solid rgb(203 180 180)" }}
+                        style={{ borderBottom: "1px solid #febd69" }}
                       >
                         <div className='col-md-6 d-flex align-items-center gap-3 order-product-info-mobile'>
                           <div className='order-product-image-mobile' style={{ width: "15%" }}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Table } from "antd";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteABlog, getBlogs, resetState } from '../features/blog/blogSlice';

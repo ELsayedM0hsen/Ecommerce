@@ -1,7 +1,16 @@
-import React from 'react'
+import React from "react";
 
 const CustomInput = (props) => {
-  const { type, name, placeholder, className, value, onChange, onBlur, disabled } = props;
+  const {
+    type,
+    name,
+    placeholder,
+    className,
+    value,
+    onChange,
+    onBlur,
+    disabled,
+  } = props;
 
   return (
     <div>
@@ -16,7 +25,7 @@ const CustomInput = (props) => {
         disabled={disabled}
       />
     </div>
-  )
-}
+  );
+};
 
-export default CustomInput
+export default CustomInput;

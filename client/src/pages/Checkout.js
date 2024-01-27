@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiArrowBack } from "react-icons/bi";
 import Container from "./../components/Container";
@@ -11,6 +11,7 @@ import Meta from "../components/Meta";
 import BreadCrumb from "../components/BreadCrumb";
 import { config } from "../utils/axiosconfig";
 import axios from "axios";
+import { SiRazorpay } from "react-icons/si";
 
 let shippingSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),
@@ -110,10 +111,8 @@ const Checkout = () => {
     },
   });
 
-  console.log(shippingInfo, paymentInfo);
-
   const loadScript = (src) => {
-    return new Promise((resolve) => {
+    return new Promise((resolve,reject) => {
       const script = document.createElement("script");
       script.src = src;
       script.onload = () => {
@@ -122,18 +121,21 @@ const Checkout = () => {
       script.onerror = () => {
         resolve(false);
       };
+      script.onerror = (error) => {
+        reject(error); // Reject the promise if script loading fails
+      };
       document.body.appendChild(script);
     });
   };
   const checkOutHandler = async () => {
-    const res = await loadScript(
-      "https://checkout.razorpay.com/v1/checkout.js"
-    );
-    if (!res) {
-      alert("Razorpay SDK failed to load");
-      return;
-    }
     try {
+      const res = await loadScript(
+        "https://checkout.razorpay.com/v1/checkout.js"
+      );
+      if (!res) {
+        alert("Razorpay SDK failed to load");
+        return;
+      }
       const result = await axios.post(
         "http://localhost:5000/api/user/order/checkout",
         { amount: totalAmount },
@@ -144,7 +146,6 @@ const Checkout = () => {
         return;
       }
       const { amount, id: order_id, currency } = result.data.order;
-      console.log(result);
       const options = {
         key: "rzp_test_p1jccn9dqLPagn",
         amount: amount,
@@ -486,10 +487,10 @@ const Checkout = () => {
                 <button
                   className="button border-0 w-100 mt-3"
                   type="submit"
-                  style={{ backgroundColor: "#fd7e14" }}
+                  style={{ backgroundColor: "#2e79ba" }}
                   onClick={checkOutHandler}
                 >
-                  Razor Order
+                  <SiRazorpay className="fs-5" /> RazorPay
                 </button>
               )}
             </div>

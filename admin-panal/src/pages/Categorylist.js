@@ -3,7 +3,6 @@ import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteAProductCategory,
-  getAProductCategory,
   getCategories,
   resetState,
 } from "../features/pcategory/pcategorySlice";
@@ -46,7 +45,7 @@ const Categorylist = () => {
     dispatch(getCategories());
   }, []);
 
-  const pCatstate = useSelector((state) => state.pCategory.pCategories);
+  const pCatstate = useSelector((state) => state?.pCategory?.pCategories);
   const data1 = [];
   for (let i = 0; i < pCatstate.length; i++) {
     data1.push({

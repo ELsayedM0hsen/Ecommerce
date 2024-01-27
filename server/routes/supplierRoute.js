@@ -1,11 +1,10 @@
 const express = require("express");
 const {
-    createSupplier,
-    updateSupplier,
-    deleteSupplier,
-    getSupplier,
-    getallSupplier,
-
+  createSupplier,
+  updateSupplier,
+  deleteSupplier,
+  getSupplier,
+  getallSupplier,
 } = require("../controller/supplierCtrl");
 const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
 const router = express.Router();

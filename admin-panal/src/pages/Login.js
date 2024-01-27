@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CustomInput from "../components/CustomInput";
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from 'formik'; 
 import * as Yup from 'yup'; 
 import { useDispatch, useSelector } from "react-redux"; 
@@ -14,17 +14,19 @@ let schema = Yup.object().shape({
     .required("Email is Required"),
   password: Yup.string()
     .required("Password is Required")
-    // .matches(
-    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-    //   "Password must have at least 8 characters, including uppercase letters, lowercase letters, numbers and special characters"
-    // ),
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      "Password must have at least 8 characters, including uppercase letters, lowercase letters, numbers and special characters"
+    ),
 });
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const [isShowPassword, setIsShowPassword] = useState(false);
+
+  const authState = useSelector((state) => state?.auth);
 
   const formik = useFormik({
     initialValues: {
@@ -37,23 +39,22 @@ const Login = () => {
     },
   });
 
-  const authState = useSelector((state) => state?.auth);
-  const { user, isLoading, isSuccess, isError, message } = authState;
+
 
   useEffect(() => {
-    if (!user == null || isSuccess) {
-      navigate("admin");
+    if (authState.user !== null && authState.isError === false) {
+      if (location?.state) {
+        navigate(location?.state);
+      } else {
+        navigate("admin");
+      }
     }
-    else {
-      navigate("");
-    }
-  }, [user, isLoading, isSuccess, isError, message])
+  }, [authState]);
   return (
-    <div className="py-5" style={{ background: "#7985c9", minHeight: "100vh" }}>
+    <div className="py-5" style={{ background: "#9fd3c7", minHeight: "100vh" }} >
       <div className="auth-card my-5 bg-white mx-auto p-4">
         <h3 className="text-center title">Login</h3>
         <div className="error text-center">
-          {/* {message.message === 'Rejected' ? 'YOU ARE NOT AN ADMIN' : ''} */}
         </div>
         <form action="" onSubmit={formik.handleSubmit}>
           <CustomInput

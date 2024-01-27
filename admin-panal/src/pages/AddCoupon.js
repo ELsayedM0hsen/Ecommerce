@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import CustomInput from "../components/CustomInput";
-import { useFormik } from "formik"; ////////////////////////////////// xu ly su kien tren form
-import * as Yup from "yup"; ////////////////////////////////////////// validate field on form
+import { useFormik } from "formik"; 
+import * as Yup from "yup"; 
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,7 +11,7 @@ import {
   resetState,
   updateACoupon,
 } from "../features/coupon/couponSlice";
-import { json, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getAProduct, getProducts } from "./../features/product/productSlice";
 import { format, parse } from "date-fns";
 
@@ -39,15 +39,13 @@ const AddCoupon = () => {
     couponExpiry,
     updatedCoupon,
   } = newCoupon;
-  // const productName1 = useSelector((state) => state.product.productName);
   const productState = useSelector((state) => state?.product?.products?.product);
-console.log(productState);
+
   // CONVERT DAY
   const changeDateFormet = (date) => {
     if (!date) {
       return ""; 
     }
-
     const newDate = new Date(date).toLocaleDateString(); 
     const [month, day, year] = newDate.split("/");
     return `${year}-${month?.padStart(2, "0")}-${day?.padStart(2, "0")}`;
@@ -122,9 +120,6 @@ console.log(productState);
         start: startDateTime,
         expiry: expiryDateTime,
       };
-
-      console.log("formattedValues:", formattedValues);
-
       delete formattedValues.name;
       if (productName !== undefined) {
         const data = { id: getProductId, couponData: formattedValues };

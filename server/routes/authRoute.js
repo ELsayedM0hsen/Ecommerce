@@ -15,7 +15,6 @@ const {
   resetPassword,
   loginAdmin,
   getWishList,
-  saveAddress,
 } = require("../controller/userCtrl");
 const {
   userCart,
@@ -57,7 +56,6 @@ router.post("/admin-login", loginAdmin);
 router.post("/cart", authMiddleware, userCart);
 router.post("/order/checkout", authMiddleware, checkout);
 router.post("/order/paymentVerification", authMiddleware, paymentVerification);
-// router.post("/cart/applycoupon", authMiddleware, applyCoupon);
 router.post("/cart/create-order", authMiddleware, createOrder);
 router.get("/all-users", getallUser);
 router.get("/getmyorders", authMiddleware, getMyOrders);
@@ -98,7 +96,6 @@ router.delete("/:id", deleteaUser);
 router.delete("/deleteOrder/:id", authMiddleware, isAdmin, deleteOrder);
 
 router.put("/edit-user", authMiddleware, updatedUser);
-router.put("/save-address", authMiddleware, saveAddress);
 router.put("/block-user/:id", authMiddleware, isAdmin, blockUser);
 router.put("/unblock-user/:id", authMiddleware, isAdmin, unblockUser);
 

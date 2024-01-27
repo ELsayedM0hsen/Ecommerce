@@ -3,7 +3,7 @@ import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend } from 'rechar
 import { convertDataChart } from '../utils/chart';
 
 const PieChartComponent = (props) => {
-  const data = convertDataChart(props.data, "paymentMethod");// sort trong mang data, voi dieu kien
+  const data = convertDataChart(props.data, "paymentMethod");
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -37,7 +37,7 @@ const PieChartComponent = (props) => {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Legend // hien thi mau và nhan o ben phai bieu do
+        <Legend 
           layout="vertical"
           align="right"
           verticalAlign="middle"
@@ -49,4 +49,4 @@ const PieChartComponent = (props) => {
   );
 }
 
-export default PieChartComponent
+// export default PieChartComponent

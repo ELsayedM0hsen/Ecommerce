@@ -36,8 +36,8 @@ const AddimportNote = () => {
     dispatch(getBrands());
     dispatch(getSuppliers());
   }, [])
-  const brandState = useSelector((state) => state.brand.brands);
-  const supplierState = useSelector((state) => state.supplier.suppliers);
+  const brandState = useSelector((state) => state?.brand?.brands);
+  const supplierState = useSelector((state) => state?.supplier?.suppliers);
 
   useEffect(() => {
     if (isSuccess && createdImportNote) {

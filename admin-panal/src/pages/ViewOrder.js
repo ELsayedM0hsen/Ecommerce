@@ -54,9 +54,6 @@ const ViewOrder = () => {
     dispatch(getOrder(orderId));
   }, [updatedOrderState]);
 
-  console.log(aOrderState);
-  console.log(orderItemsState);
-
   const data1 = [];
   for (let i = 0; i < orderItemsState?.length; i++) {
     data1.push({
@@ -156,7 +153,7 @@ const ViewOrder = () => {
             }}
           >
             <h5>Delivery address</h5>
-            <p>{`Receiver: ${aOrderState?.shippingInfo?.lastName} ${aOrderState?.shippingInfo?.firstName}`}</p>
+            <p>{`Receiver: ${aOrderState?.shippingInfo?.firstName} ${aOrderState?.shippingInfo?.lastName}`}</p>
             <p>{`Phone number: ${aOrderState?.shippingInfo?.mobile}`}</p>
             <p className="mb-0">{`Address: ${aOrderState?.shippingInfo?.address}`}</p>
           </div>

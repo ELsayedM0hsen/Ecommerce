@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import BreadCrumb from '../components/BreadCrumb';
 import Meta from '../components/Meta'; 
 import { Link, useLocation } from 'react-router-dom';
@@ -9,16 +9,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getABlog } from '../features/blogs/blogSlice';
 
 const SingleBlog = () => {
-  const blogState = useSelector((state) => state?.blog?.singleBlog);
+  const dispatch = useDispatch();
   const location = useLocation();
   const getblogId = location.pathname.split("/")[2];
-  const dispatch = useDispatch();
+  const blogState = useSelector((state) => state?.blog?.singleBlog);
+
   useEffect(() => {
     getBlog();
   }, [])
   const getBlog = () => {
     dispatch(getABlog(getblogId));
   }
+  
   return (
     <>
       <Meta title={blogState?.title} />

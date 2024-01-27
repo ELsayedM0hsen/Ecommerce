@@ -37,49 +37,35 @@ const Orders = () => {
                 All
               </button>
               <button type="button"
-                className={`btn btn-outline-primary ${selectedNavItem === "Đã đặt hàng" ? "active" : ""}`}
+                className={`btn btn-outline-primary ${selectedNavItem === "Ordered" ? "active" : ""}`}
                 onClick={() => setSelectedNavItem("Ordered")}
               >
                 Ordered
               </button>
               <button type="button"
-                className={`btn btn-outline-primary ${selectedNavItem === "Đang xử lý" ? "active" : ""}`}
+                className={`btn btn-outline-primary ${selectedNavItem === "Processing" ? "active" : ""}`}
                 onClick={() => setSelectedNavItem("Processing")}
               >
                 Processing
               </button>
               <button type="button"
-                className={`btn btn-outline-primary ${selectedNavItem === "Đang giao" ? "active" : ""}`}
+                className={`btn btn-outline-primary ${selectedNavItem === "Delivering" ? "active" : ""}`}
                 onClick={() => setSelectedNavItem("Delivering")}
               >
                 Delivering</button>
               <button type="button"
-                className={`btn btn-outline-primary ${selectedNavItem === "Đã nhận hàng" ? "active" : ""}`}
+                className={`btn btn-outline-primary ${selectedNavItem === "Has received the goods" ? "active" : ""}`}
                 onClick={() => setSelectedNavItem("Has received the goods")}
               >
                 Has received the goods
               </button>
               <button type="button"
-                className={`btn btn-outline-primary ${selectedNavItem === "Đã Hủy" ? "active" : ""}`}
+                className={`btn btn-outline-primary ${selectedNavItem === "Cancelled" ? "active" : ""}`}
                 onClick={() => setSelectedNavItem("Cancelled")}
               >
                 Cancelled
               </button>
             </div>
-            {/* <div className='row'>
-              <div className='col-3'>
-                <h5>Tổng tiền</h5>
-              </div>
-              <div className='col-3'>
-                <h5>Tiền sau khuyến mãi</h5>
-              </div>
-              <div className='col-3'>
-                <h5>Thanh toán</h5>
-              </div>
-              <div className='col-3'>
-                <h5>Trạng thái đơn hàng</h5>
-              </div>
-            </div> */}
           </div>
           <div className='col-12'>
             {

@@ -34,11 +34,6 @@ const createOrder = asyncHandler(async (req, res, next) => {
     });
 
     const results = await Promise.all(promises);
-
-    // console.log("results: ", results);
-    // console.log("updateQuantity: ", updateQuantity);
-    // console.log("arrProduct: ", arrProduct);
-
     if (updateQuantity) {
       const createdOrder = await Order.create({
         itemsPrice,

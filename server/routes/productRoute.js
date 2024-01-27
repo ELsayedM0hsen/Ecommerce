@@ -1,13 +1,13 @@
 const express = require("express");
 const {
-    createProduct,
-    getaProduct,
-    getAllProduct,
-    updateProduct,
-    deleteProduct,
-    addToWishlist,
-    rating,
-    getProductbySupplier
+  createProduct,
+  getaProduct,
+  getAllProduct,
+  updateProduct,
+  deleteProduct,
+  addToWishlist,
+  rating,
+  getProductbySupplier,
 } = require("../controller/productCtrl");
 const { isAdmin, authMiddleware } = require("../middlewares/authMiddleware");
 const router = express.Router();

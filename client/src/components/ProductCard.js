@@ -198,19 +198,6 @@ const ProductCard = (props) => {
                         )}
                       </div>
                     </div>
-                    {/* <div className='action-bar position-absolute'>
-                    <div className='d-flex flex-column gap-15'>
-                      <button className='border-0 bg-transparent'>
-                    <img src={prodcompare} alt='compare' />
-                  </button>
-                  <Link to={'/product/' + item?._id} className='border-0 bg-transparent'>
-                    <img src={view} alt='view' />
-                  </Link>
-                      <button className='border-0 bg-transparent'>
-                    <img src={addcart} alt='addcart' />
-                  </button>
-                    </div>
-                  </div> */}
                   </div>
                 </Link>
               </div>

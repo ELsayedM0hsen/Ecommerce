@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import React from "react";
 import BreadCrumb from "../components/BreadCrumb";
-import Meta from "../components/Meta"; // thay doi tieu de
+import Meta from "../components/Meta";
 import Container from "./../components/Container";
 
 const Introduce = () => {
