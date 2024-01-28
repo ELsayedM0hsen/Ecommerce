@@ -138,10 +138,6 @@ export const productSlice = createSlice({
         state.productColor = action.payload.color;
         state.productQuantity = action.payload.quantity;
         state.productSize = action.payload.size;
-        state.productWeight = action.payload.weight;
-        state.productPower = action.payload.power;
-        state.productLifespan = action.payload.lifespan;
-        state.productWarranty = action.payload.warranty;
         state.supplierID = action.payload.supplierID;
         state.productImages = action.payload.images;
       })

@@ -19,7 +19,7 @@ export const uploadImg = createAsyncThunk(
   "upload/images",
   async (data, thunkAPI) => {
     try {
-      const formData = new FormData(); // backend goi req.files
+      const formData = new FormData(); // backend  req.files
       for (let i = 0; i < data.length; i++) {
         formData.append("images", data[i]);
       }
@@ -74,7 +74,7 @@ export const uploadSlice = createSlice({
         state.deletedImage = action.payload;
         state.message = "success";
         if (state.isSuccess === true) {
-          toast.success("Xóa ảnh thành công");
+          toast.success("Img Deleted Successfully");
         }
       })
       .addCase(delImg.rejected, (state, action) => {

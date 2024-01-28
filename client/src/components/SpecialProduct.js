@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 
 const SpecialProduct = (props) => {
   const { title, brand, totalrating, price, sold, quantity, id, image } = props;
+  const truncatedTitle = title.length > 70 ? title.substring(0, 70) + "..." : title;
   return (
     <div className="col-6 mb-3">
       <div className="special-product-card">
         <div className="d-flex justify-content-between">
           <div className="p-3">
-            <img src={image} className="img-fluid" alt="image" />
+            <img src={image} className="img-fluid product-image" alt="image" />
           </div>
           <div className="special-product-content">
             <h5 className="brand">{brand}</h5>
-            <h6 className="title">{title}</h6>
+            <h6 className="title">{truncatedTitle}</h6>
             <ReactStars
               count={5}
               size={24}

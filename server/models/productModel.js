@@ -53,19 +53,6 @@ var productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    weight: {
-      type: String,
-      required: true,
-    },
-    power: {
-      type: String,
-    },
-    lifespan: {
-      type: String,
-    },
-    warranty: {
-      type: String,
-    },
     images: [
       {
         public_id: String,

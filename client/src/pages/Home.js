@@ -146,7 +146,7 @@ const Home = () => {
                         src={item?.images[0]?.url}
                         alt="camera"
                         className="d-block"
-                        style={{ height: "75px", margin: "0 auto 8px" }}
+                        style={{ height: "120px", margin: "0 auto 8px" }}
                       />
                       <p style={{ fontWeight: "600", textAlign: "center" }}>
                         {item?.title}
@@ -247,7 +247,7 @@ const Home = () => {
                         </div>
                         <div className="product-details">
                           <h6 className="brand mt-2">{item?.brand}</h6>
-                          <h5 className="title mb-1"> {item?.title}</h5>
+                          <h5 className="title mb-1"> {item?.title.substring(0, 60)}</h5>
                           <ReactStars
                             count={5}
                             size={24}
@@ -260,7 +260,7 @@ const Home = () => {
                               className="price mb-0"
                               style={{
                                 color: isShowPriceDiscount ? "gray" : "red",
-                                fontSize: isShowPriceDiscount ? "14px" : "",
+                                fontSize: isShowPriceDiscount ? "11px" : "",
                               }}
                             >
                               {isShowPriceDiscount ? (
@@ -336,7 +336,7 @@ const Home = () => {
         <div className="row">
           {productState &&
             productState?.map((item, index) => {
-              if (item.tags === "special") {
+              if (item.tags === "Special") {
                 return (
                   <SpecialProduct
                     key={index}
@@ -397,8 +397,10 @@ const Home = () => {
           <div className="row">
             {productState &&
               productState
-                .filter((item) => item.tags === "popular")
+                .filter((item) => item.tags === "Popular")
+                .slice(0, 4) // Ensure only four products are displayed
                 .map((item, index) => (
+                  
                   <ProductCard key={index} data={[item]} />
                 ))}
           </div>

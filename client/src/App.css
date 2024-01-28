@@ -924,6 +924,11 @@ footer .input-group-text{
 .home-page .product-details{
     height: 139px;
 }
+.product-image {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover; 
+}
 /* product featured end*/
 
 .col-2-4 {

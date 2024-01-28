@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import BreadCrumb from "../components/BreadCrumb";
-import Meta from "../components/Meta"; 
+import Meta from "../components/Meta";
 import ProductCard from "../components/ProductCard";
 import Color from "./../components/Color";
 import Container from "./../components/Container";
@@ -61,9 +61,6 @@ const SingleProduct = () => {
   );
   const cartState = useSelector((state) => state?.auth?.cartProducts);
   const couponState = useSelector((state) => state?.coupon);
-  const orderState = useSelector(
-    (state) => state?.auth?.getOrderedProduct?.orders
-  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -83,25 +80,13 @@ const SingleProduct = () => {
     }
   }, [getProductId]);
 
-  useEffect(() => {
-    for (let i = 0; i < orderState?.length; i++) {
-      if (orderState[i]?.orderStatus === "Has received the goods") {
-        for (let j = 0; j < orderState[i]?.orderItems?.length; j++) {
-          if (getProductId === orderState[i]?.orderItems[j]?.product?._id) {
-            setAlreadyRating(true);
-            break;
-          }
-        }
-      }
-    }
-  }, [orderState]);
 
   useEffect(() => {
     let data = [];
     for (let index = 0; index < productsState?.length; index++) {
       const element = productsState[index];
       if (
-        element?.tags === "popular" &&
+        element?.tags === "Popular" &&
         element?.category === productState?.category &&
         element?._id !== productState?._id
       ) {
@@ -122,8 +107,8 @@ const SingleProduct = () => {
   };
 
   const addRatingToProduct = () => {
-    if (alreadyRating === false) {
-      toast.warning("You try this product!");
+      if (star === null) {
+      toast.error("Please add star rating");
       return false;
     } else if (comment === null) {
       toast.error("Please write a review about this product.");
@@ -164,15 +149,14 @@ const SingleProduct = () => {
     currency: "EGP",
   }).format(productState?.price);
 
-
   const uploadCart = () => {
     if (!authState?._id) {
-      navigate("/login", { state: location.pathname }); 
+      navigate("/login", { state: location.pathname });
     } else {
       dispatch(
         addProdToCart({
           productId: productState?._id,
-          color:color || productState?.color,
+          color: color || productState?.color,
           quantity,
           price: productState?.price,
           priceAfterDiscount: priceAfterDiscount,
@@ -191,6 +175,10 @@ const SingleProduct = () => {
     }
   }, [productState?.totalrating]);
 
+  console.log(alreadyAdded);
+  console.log(alreadyRating);
+  console.log(starRating);
+console.log(starKey);
   //Slider
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [sliderKey, setSliderKey] = useState(0);
@@ -209,6 +197,7 @@ const SingleProduct = () => {
     autoplaySpeed: 1500,
     initialSlide: selectedImageIndex,
   };
+
 
   return (
     <>
@@ -345,10 +334,12 @@ const SingleProduct = () => {
                 </div>
               </div>
               <div className="pt-2">
-                <div className='d-flex gap-10 flex-column mt-2 mb-3'>
-                  <h3 className='product-heading'>Size :</h3>
-                  <div className='d-flex flex-wrap gap-15'>
-                    <span className='badge border border-1 bg-white text-dark text-secondary'>{productState?.size}</span>
+                <div className="d-flex gap-10 flex-column mt-2 mb-3">
+                  <h3 className="product-heading">Size :</h3>
+                  <div className="d-flex flex-wrap gap-15">
+                    <span className="badge border border-1 bg-white text-dark text-secondary">
+                      {productState?.size}
+                    </span>
                   </div>
                 </div>
                 <div className="d-flex gap-30 flex-row mt-2 mb-3">
@@ -481,7 +472,7 @@ const SingleProduct = () => {
                     <td>{productState?.size}</td>
                   </tr>
                   <tr>
-                    <td>Weight</td>
+                    {/* <td>Weight</td>
                     <td>{productState?.weight}</td>
                   </tr>
                   <tr>
@@ -494,7 +485,7 @@ const SingleProduct = () => {
                   </tr>
                   <tr>
                     <td>Warranty</td>
-                    <td>{productState?.warranty}</td>
+                    <td>{productState?.warranty}</td> */}
                   </tr>
                 </tbody>
               </table>
@@ -553,7 +544,7 @@ const SingleProduct = () => {
             <div className="review-inner-wrapper">
               <div className="review-head d-flex justify-content-between align-items-end">
                 <div>
-                  <h4 className="mb-2">Overall Rating</h4>
+                  <h4 className="mb-2">Customers Reviews</h4>
                   <div className="d-flex align-items-center gap-10">
                     <ReactStars
                       key={starKey}
@@ -568,7 +559,7 @@ const SingleProduct = () => {
                 </div>
               </div>
               <div className="review-form py-4">
-                <h4>Review</h4>
+                <h4>Write a Review</h4>
                 <ReactStars
                   count={5}
                   size={24}
@@ -587,7 +578,6 @@ const SingleProduct = () => {
                     cols="30"
                     rows="4"
                     placeholder="Review content"
-                    disabled={alreadyRating === false ? true : false}
                     onChange={(e) => {
                       setComment(e.target.value);
                     }}
@@ -638,7 +628,7 @@ const SingleProduct = () => {
           <div className="row">
             {productsState &&
               productsState
-                .filter((item) => item?.tags === "popular")
+                .filter((item) => item?.tags === "Popular")
                 .map((item, index) => (
                   <ProductCard key={index} data={[item]} />
                 ))}

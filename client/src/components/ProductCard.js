@@ -52,6 +52,11 @@ const ProductCard = (props) => {
     <>
       {data &&
         data?.map((item, index) => {
+          const truncatedTitle =
+            item.title.length > 60
+              ? item.title.substring(0, 60) + "..."
+              : item.title;
+
           let priceAfterDiscount = item?.price;
           let discountPercent = 0;
           let isShowPriceDiscount = false;
@@ -142,7 +147,7 @@ const ProductCard = (props) => {
                       className={`product-details ${grid === 12 ? "w-75" : ""}`}
                     >
                       <h6 className="brand mt-2">{item?.brand}</h6>
-                      <h5 className="title mb-1"> {item?.title}</h5>
+                      <h5 className="title mb-1"> {truncatedTitle}</h5>
                       <ReactStars
                         count={5}
                         size={24}

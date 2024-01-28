@@ -4,7 +4,6 @@ import { config } from '../../utils/axiosconfig';
 
 const login = async (userData) => {
   const response = await axios.post(`${base_url}user/admin-login`, userData);
-  console.log(userData);
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
   }
@@ -89,12 +88,6 @@ const unBlockUser = async (id) => {
   return response.data;
 };
 
-const refreshToken = async (refreshToken) => {
-  const response = await axios.post(`${base_url}user/refresh`, { refreshToken: refreshToken });
-  if (response.data) {
-    return response.data;
-  }
-};
 
 const authService = {
   login,
@@ -111,6 +104,5 @@ const authService = {
   deleteOrder,
   blockUser,
   unBlockUser,
-  // refreshToken
 }
 export default authService;

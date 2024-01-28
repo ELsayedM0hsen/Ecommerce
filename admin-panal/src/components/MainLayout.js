@@ -268,7 +268,7 @@ const MainLayout = () => {
           }}
         >
           <ToastContainer
-            position="top-right"
+            position="bottom-right"
             autoClose={250}
             hideProgressBar={false}
             newestOnTop={true}

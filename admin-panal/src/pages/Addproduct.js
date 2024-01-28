@@ -35,11 +35,7 @@ let schema = Yup.object().shape({
   color: Yup.string().required("Color cannot be empty"),
   quantity: Yup.number().required("Quantity cannot be empty"),
   size: Yup.string().required("Size cannot be empty"),
-  weight: Yup.string().required("Weight cannot be empty"),
-  power: Yup.string(),
-  lifespan: Yup.string(),
-  warranty: Yup.string(),
-  supplierID: Yup.string(),
+  supplierID: Yup.string().required("supplier cannot be empty"),
 });
 
 const Addproduct = () => {
@@ -85,10 +81,6 @@ const Addproduct = () => {
     productColor,
     productQuantity,
     productSize,
-    productWeight,
-    productPower,
-    productLifespan,
-    productWarranty,
     supplierID,
   } = newProduct;
   const { productImages } = newProduct;
@@ -158,10 +150,6 @@ const Addproduct = () => {
       color: productColor || "",
       quantity: productQuantity || "",
       size: productSize || "",
-      weight: productWeight || "",
-      power: productPower || "",
-      lifespan: productLifespan || "",
-      warranty: productWarranty || "",
       supplierID: supplierID || "",
       images: "",
     },
@@ -331,50 +319,6 @@ const Addproduct = () => {
           />
           <div className="error">
             {formik.touched.size && formik.errors.size}
-          </div>
-          <CustomInput
-            type="text"
-            label="weight"
-            name="weight"
-            onChng={formik.handleChange("weight")}
-            onBlr={formik.handleBlur("weight")}
-            val={formik.values.weight}
-          />
-          <div className="error">
-            {formik.touched.weight && formik.errors.weight}
-          </div>
-          <CustomInput
-            type="text"
-            label="power"
-            name="power"
-            onChng={formik.handleChange("power")}
-            onBlr={formik.handleBlur("power")}
-            val={formik.values.power}
-          />
-          <div className="error">
-            {formik.touched.power && formik.errors.power}
-          </div>
-          <CustomInput
-            type="text"
-            label="lifespan"
-            name="lifespan"
-            onChng={formik.handleChange("lifespan")}
-            onBlr={formik.handleBlur("lifespan")}
-            val={formik.values.lifespan}
-          />
-          <div className="error">
-            {formik.touched.lifespan && formik.errors.lifespan}
-          </div>
-          <CustomInput
-            type="text"
-            label="Warranty (Month)"
-            name="warranty"
-            onChng={formik.handleChange("warranty")}
-            onBlr={formik.handleBlur("warranty")}
-            val={formik.values.warranty}
-          />
-          <div className="error">
-            {formik.touched.warranty && formik.errors.warranty}
           </div>
           <select
             name="supplierID"
